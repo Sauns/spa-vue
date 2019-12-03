@@ -53,7 +53,6 @@ export default {
 	methods: {
 		createRecordList(){
 			this.$store.dispatch('LOAD_RECORDS').then(res =>{
-				console.log(res.length, 'ya tut sozday')
 				this.records = res
 				if (Math.ceil(res.length / this.displayedItemsCount) === 1){
 					this.totalPage = ''
