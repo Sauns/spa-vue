@@ -51,13 +51,15 @@ export default new Vuex.Store({
           console.error(error);
       });
     },
-    DELETE_RECORDS({commit, dispatch}, payload){
-      Vue.$db.collection("table-records").doc(payload.id).delete().then(function() {
-        dispatch('LOAD_RECORDS')
-        console.log(commit,"Document successfully deleted!");
-      }).catch(function(error) {
-          console.error("Error removing document: ", error);
-      });
+    DELETE_RECORDS({commit}, payload){
+      return new Promise ((resolve, reject) => {
+        Vue.$db.collection("table-records").doc(payload.id).delete().then(function() {
+          resolve()
+          console.log(commit,"Document successfully deleted!");
+        }).catch(function(error) {
+            console.error("Error removing document: ", reject, error);
+        })
+      })
     }
   },
   getters: {

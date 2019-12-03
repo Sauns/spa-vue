@@ -55,6 +55,13 @@ export default {
                         this.recordsDetail.id = '1'
                     }else{
                         this.recordsDetail.id = (res.length +1).toString()
+                        let id = 0
+                        res.forEach((el) =>{
+                            if(id < parseInt(el.id)){
+                                id = parseInt(el.id)
+                            }
+                        })
+                        this.recordsDetail.id = (id + 1).toString()
                     }
                     let now = new Date()  
                     let secondsSinceEpoch = Math.round(now.getTime() / 1000)

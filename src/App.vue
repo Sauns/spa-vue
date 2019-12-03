@@ -11,14 +11,6 @@ export default {
   components: {
     "top-header": Header
   },
-  created() {
-    this.loadRecords();
-  },
-  methods: {
-    loadRecords() {
-      this.$store.dispatch('LOAD_RECORDS')
-    }
-  },
 }
 </script>
 

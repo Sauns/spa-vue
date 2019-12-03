@@ -48,19 +48,23 @@ export default {
 		}
 	},
 	created() {
-		this.$store.dispatch('LOAD_RECORDS').then(res =>{
-			this.records = res
-			if (Math.ceil(res.length / this.displayedItemsCount) === 1){
-				this.totalPage = ''
-			}
-			else{
-				this.totalPage = Math.ceil(res.length / this.displayedItemsCount)
-			}
-			this.paggination = this.getPaginationArray(this.currentPage, this.totalPage)
-			this.getDysplayedRecords()
-		})
+		this.createRecordList()
 	},
 	methods: {
+		createRecordList(){
+			this.$store.dispatch('LOAD_RECORDS').then(res =>{
+				console.log(res.length, 'ya tut sozday')
+				this.records = res
+				if (Math.ceil(res.length / this.displayedItemsCount) === 1){
+					this.totalPage = ''
+				}
+				else{
+					this.totalPage = Math.ceil(res.length / this.displayedItemsCount)
+				}
+				this.paggination = this.getPaginationArray(this.currentPage, this.totalPage)
+				this.getDysplayedRecords()
+			})
+		},
 		getDysplayedRecords(){
 			let maxIndex = this.currentPage * this.displayedItemsCount
 			let minIndex = maxIndex - this.displayedItemsCount + 1
@@ -147,7 +151,10 @@ export default {
 				return formateDate
 		},
 		deleteRecords(record){
-			this.$store.dispatch('DELETE_RECORDS', record)
+			this.$store.dispatch('DELETE_RECORDS', record).then(() =>{
+				this.createRecordList()
+				this.changePage(1)
+			})
 		}
 	},
 }
