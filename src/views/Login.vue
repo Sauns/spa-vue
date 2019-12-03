@@ -3,9 +3,9 @@
         router-link.link(to='/register/') Registration
         form(@submit.prevent='logIn')
             .form__row
-                input(v-model='email' type='email' placholder='login')
+                input(v-model='email' type='email' placeholder='login')
             .form__row
-                input(v-model='password' type='password' placholder='password')
+                input(v-model='password' type='password' placeholder='password')
             .form__row
                 button(type='submit') LogIn
             .error(v-if='error') {{error.message}}
