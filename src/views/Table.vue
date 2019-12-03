@@ -41,7 +41,7 @@ export default {
 			activeSort: 'id',
 			displayedRecords: [],
 			displayedItemsCount: 2,
-			currentPage: 2,
+			currentPage: 1,
 			totalPage: '',
 			records: '',
 			paggination: ''
